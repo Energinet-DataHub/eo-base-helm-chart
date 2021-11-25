@@ -1,30 +1,38 @@
-deployments:
-  api:
-    image:
-      tag: v0.0.18
-env:
-  DEBUG: 1
-  SERVICE_URL: https://eo-u-ss.westeurope.cloudapp.azure.com/api/auth
-  TOKEN_COOKIE_DOMAIN: eo-u-ss.westeurope.cloudapp.azure.com
-  SQL_URI: postgresql://postgres:1234@eo-postgresql.eo-postgresql.svc.cluster.local:5432/auth
-  SQL_POOL_SIZE: 1
-  OIDC_AUTHORITY_URL: hegherg
+env: {}
+
+randomSecret:
+  test-random:
+    - test-secret-1
+
 envSecrets:
-  OIDC_CLIENT_ID:
-    key: oidc_client_id
-    secretName: eo-oidc-secret
-  OIDC_CLIENT_SECRET:
-    key: oidc_client_secret
-    secretName: eo-oidc-secret
+  TEST_RANDOM_SECRET:
+    secretName: test-random
+    key: test-secret-1
+  TEST_SECRET:
+    secretName: test
+    key: test-key
+
 sealedSecret:
-  eo-oidc-secret:
+  test-name:
     encryptedData:
-      oidc_client_id: AgCqnwAnk8ur+8Qjs/VhwunDWvcCDo962cPV3LqtEE/I8a1ldxAPIU/nMFqij/5B3Bkx9r1+hz84TiSHkWL3IO/fhIIL1gGb35QTrRe/A9KoaL2H//1q2VcOVvdYs8Kyd90qdExTlgNSx9Nu9zJkJILoCy7Yskt9DZTj8s9zG/4mVp+lZfMIwDtUmSEgLtRjSJmPaguGLt7OXO1xrXVTs2a6rJ8uTUCbp82bxsLSUwBv6xOf+wnGOqjvY9RzwFutAoS4gIZY/JvM1tCj2Oj60Z01z/z2XS7gTaRBhHHVLm4u8nTS2sjW0rkra+tbUymV0+D2Ad3lOyGBm6OoV3QgHx2nkwfuDGkmVDBeV587YWU1kCUeFDsjPf5YaGP4dugaMSSxxJo+PplBRyOZQ+e9UZ3lomBalwLuDRChJtYKAwr6+DoHqqAwtPFuQ3NTriarrYt3v4v0J6l/PSvZQu+l2b5UyrgjrDF02LHVY3W5QdVV3oXuJoFKrB23P8uEkVkmN8tt5YS3NhCtPwf7XLDdjdgA2A86+bwOu29DzEI2GBFaRHJHmxvOnD6CioznQC54wQ0wbSwiVwXC2jRVW9wtWYc5ZqNHl/J/yXe+jkZ9B7qSppEZU6i2MfPTPVcEnXDJd7Gf+cmuaa3abwOKZB/VuuEfC2s5oawwIyBEKx+xbpZxZJg9uKCCBrB7FmSjS5GC+mQUNzw=
-      oidc_client_secret: AgCqnwAnk8ur+8Qjs/VhwunDWvcCDo962cPV3LqtEE/I8a1ldxAPIU/nMFqij/5B3Bkx9r1+hz84TiSHkWL3IO/fhIIL1gGb35QTrRe/A9KoaL2H//1q2VcOVvdYs8Kyd90qdExTlgNSx9Nu9zJkJILoCy7Yskt9DZTj8s9zG/4mVp+lZfMIwDtUmSEgLtRjSJmPaguGLt7OXO1xrXVTs2a6rJ8uTUCbp82bxsLSUwBv6xOf+wnGOqjvY9RzwFutAoS4gIZY/JvM1tCj2Oj60Z01z/z2XS7gTaRBhHHVLm4u8nTS2sjW0rkra+tbUymV0+D2Ad3lOyGBm6OoV3QgHx2nkwfuDGkmVDBeV587YWU1kCUeFDsjPf5YaGP4dugaMSSxxJo+PplBRyOZQ+e9UZ3lomBalwLuDRChJtYKAwr6+DoHqqAwtPFuQ3NTriarrYt3v4v0J6l/PSvZQu+l2b5UyrgjrDF02LHVY3W5QdVV3oXuJoFKrB23P8uEkVkmN8tt5YS3NhCtPwf7XLDdjdgA2A86+bwOu29DzEI2GBFaRHJHmxvOnD6CioznQC54wQ0wbSwiVwXC2jRVW9wtWYc5ZqNHl/J/yXe+jkZ9B7qSppEZU6i2MfPTPVcEnXDJd7Gf+cmuaa3abwOKZB/VuuEfC2s5oawwIyBEKx+xbpZxZJg9uKCCBrB7FmSjS5GC+mQUNzw=
-ingress:
-  hosts:
-  - 'eo-u-ss.westeurope.cloudapp.azure.com'
-  httpMiddelwares:
-  - name: https-only
-    namespace: default
-  tlsSecretName: elop-cert
+      test-key: "AgCqnwAnk8ur+8Qjs/VhwunDWvcCDo962cPV3LqtEE/I8a1ldxAPIU/nMFqij/5B3Bkx9r1+hz84TiSHkWL3IO/fhIIL1gGb35QTrRe/A9KoaL2H//1q2VcOVvdYs8Kyd90qdExTlgNSx9Nu9zJkJILoCy7Yskt9DZTj8s9zG/4mVp+lZfMIwDtUmSEgLtRjSJmPaguGLt7OXO1xrXVTs2a6rJ8uTUCbp82bxsLSUwBv6xOf+wnGOqjvY9RzwFutAoS4gIZY/JvM1tCj2Oj60Z01z/z2XS7gTaRBhHHVLm4u8nTS2sjW0rkra+tbUymV0+D2Ad3lOyGBm6OoV3QgHx2nkwfuDGkmVDBeV587YWU1kCUeFDsjPf5YaGP4dugaMSSxxJo+PplBRyOZQ+e9UZ3lomBalwLuDRChJtYKAwr6+DoHqqAwtPFuQ3NTriarrYt3v4v0J6l/PSvZQu+l2b5UyrgjrDF02LHVY3W5QdVV3oXuJoFKrB23P8uEkVkmN8tt5YS3NhCtPwf7XLDdjdgA2A86+bwOu29DzEI2GBFaRHJHmxvOnD6CioznQC54wQ0wbSwiVwXC2jRVW9wtWYc5ZqNHl/J/yXe+jkZ9B7qSppEZU6i2MfPTPVcEnXDJd7Gf+cmuaa3abwOKZB/VuuEfC2s5oawwIyBEKx+xbpZxZJg9uKCCBrB7FmSjS5GC+mQUNzw="
+
+deployments:
+  test:
+    replicaCount: 1
+    command: "/bin/bash"
+    args: "/scripts/test-secret-env-var.sh"
+    env: {}
+    image:
+      repository: "ubuntu"
+      tag: "latest"
+      pullPolicy: Always
+    containerSpec:
+      volumeMounts:
+        - name: scripts-vol
+          mountPath: /scripts
+    podSpec:
+      volumes:
+        - name: scripts-vol
+          configMap:
+            name: scripts-configmap
