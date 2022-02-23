@@ -3,12 +3,24 @@ name: Build and release helm chart
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - '.devcontainer/**'
+      - '.test/**'
+      - 'README.md'
+      - 'LICENSE'
 
 jobs:
   helm-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Get chart version
+        id: get_chart_version
+        uses: Energinet-Datahub/.github/.github/actions/yaml-get@main
+        with:
+          yaml_file: chart/Chart.yaml
+          yaml_path: version
 
       - name: Release helm chart
         uses: Energinet-DataHub/.github/.github/actions/helm-release-chart@main
@@ -17,3 +29,4 @@ jobs:
           dispatch_token: ${{ secrets.RELEASE_CHART_TOKEN }}
           chart_folder: chart
           chart_repository: Energinet-DataHub/helm-charts
+          chart_version: ${{ steps.get_chart_version.outputs.result }}
