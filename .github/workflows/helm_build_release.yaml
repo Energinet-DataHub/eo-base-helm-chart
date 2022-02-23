@@ -11,8 +11,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Release helm chart
-        uses: Energinet-DataHub/.github/.github/actions/helm-release-chart@helm_releases_action
+        uses: Energinet-DataHub/.github/.github/actions/helm-release-chart@main
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
+          release_token: ${{ secrets.RELEASE_CHART_TOKEN }}
+          dispatch_token: ${{ secrets.RELEASE_CHART_TOKEN }}
           chart_folder: chart
           chart_repository: Energinet-DataHub/helm-charts
