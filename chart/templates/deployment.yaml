@@ -19,5 +19,9 @@ spec:
         {{- include "eo-base-helm-chart.selectorLabels" $ | nindent 8 }}
         component: {{ $key }}
     spec:
+      {{- if $value.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml .imagePullSecrets | indent 8 }}
+      {{- end }}
       {{- include "eo-base-helm-chart.podTemplate" (dict "root" $ "name" $key "deployment" $value) | nindent 6 }}
 {{- end }}
