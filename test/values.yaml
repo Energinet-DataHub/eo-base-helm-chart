@@ -21,6 +21,9 @@ deployments:
       repository: "ubuntu"
       tag: "latest"
       pullPolicy: Always
+    imagePullSecrets:
+      - name: foo
+      - name: bar
     containerSpec:
       volumeMounts:
         - name: scripts-vol
