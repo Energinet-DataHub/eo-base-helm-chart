@@ -25,8 +25,7 @@ jobs:
       - name: Release helm chart
         uses: Energinet-DataHub/.github/.github/actions/helm-release-chart@main
         with:
-          release_token: ${{ secrets.RELEASE_CHART_TOKEN }}
-          dispatch_token: ${{ secrets.RELEASE_CHART_TOKEN }}
+          deploy_key: ${{ secrets.DEPLOY_KEY_HELM_CHARTS }}
           chart_folder: chart
           chart_repository: Energinet-DataHub/helm-charts
           chart_version: ${{ steps.get_chart_version.outputs.result }}
