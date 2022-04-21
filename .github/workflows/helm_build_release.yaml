@@ -1,7 +1,6 @@
 name: Build and release helm chart
 
 on:
-  pull_request: {}
   push:
     branches: [ main ]
     paths-ignore:
@@ -24,7 +23,7 @@ jobs:
           yaml_path: version
 
       - name: Release helm chart
-        uses: Energinet-DataHub/.github/.github/actions/helm-release-chart@feature/change-to-deploy-keys
+        uses: Energinet-DataHub/.github/.github/actions/helm-release-chart@main
         with:
           deploy_key: ${{ secrets.DEPLOY_KEY_HELM_CHARTS }}
           chart_folder: chart
