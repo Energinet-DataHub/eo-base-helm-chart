@@ -1,6 +1,7 @@
 name: Build and release helm chart
 
 on:
+  pull_request: {}
   push:
     branches: [ main ]
     paths-ignore:
