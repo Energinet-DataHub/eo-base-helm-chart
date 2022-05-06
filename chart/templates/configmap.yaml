@@ -1,5 +1,6 @@
 {{- if .Values.configMaps}}
 {{- range $name, $value := .Values.configMaps }}
+{{- if $value.data }}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -9,5 +10,6 @@ data:
   {{- with $value.data }}
   {{- toYaml . | nindent 2}}
   {{- end }}
+{{- end }}
 {{- end }}
 {{ end -}}
